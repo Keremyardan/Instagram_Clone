@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Chat {
-    Integer chatId;
-    String sessionId;
-    Integer userId;
-    String chatContent;
-    String chatTimestamp;
+public class DetailedFollow {
+    private String followTimestamp;
 }
