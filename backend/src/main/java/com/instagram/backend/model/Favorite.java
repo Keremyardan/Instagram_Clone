@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedFollow extends User{
-    private String followTimestamp;
+public class Favorite {
+    Integer favoriteId;
+    Integer userId;
+    Integer postId;
+    Integer friendId;
 }

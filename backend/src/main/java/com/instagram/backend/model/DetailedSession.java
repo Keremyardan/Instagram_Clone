@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedFollow extends User{
-    private String followTimestamp;
+public class DetailedSession {
+    String messageDigestion;
+    String updateTime;
 }
