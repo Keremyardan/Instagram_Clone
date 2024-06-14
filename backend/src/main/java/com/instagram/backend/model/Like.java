@@ -9,7 +9,11 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedPost extends Post{
-    private String userAvatar;
+public class Like {
+    private Integer likeId;
+    private Integer userId;
     private String userName;
+    private String userAvatar;
+    private Integer postId;
+    private String likeTimestamp;
 }

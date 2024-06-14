@@ -5,11 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedPost extends Post{
-    private String userAvatar;
+public class MutualResult {
+    private Integer userId;
     private String userName;
+    private String userAvatar;
+    private Integer mutualNumber;
+    private List<MutualFriend> mutual;
 }

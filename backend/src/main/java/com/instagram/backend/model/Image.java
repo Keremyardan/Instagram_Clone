@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedPost extends Post{
-    private String userAvatar;
+public class Image {
+    private Integer userId;
     private String userName;
+    private String imageUrl;
+    private String imageKey;
 }

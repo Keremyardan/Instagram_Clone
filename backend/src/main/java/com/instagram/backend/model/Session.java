@@ -9,7 +9,13 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedPost extends Post{
-    private String userAvatar;
+public class Session {
+    private String sessionId;
+    private Integer userAId;
     private String userName;
+    private String userAvatar;
+    private Integer userBId;
+    private String userBName;
+    private String userBAvatar;
+    private String sessionTimestamp;
 }

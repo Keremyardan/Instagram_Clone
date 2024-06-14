@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailedSession {
+public class DetailedSession extends Session {
     String messageDigestion;
     String updateTime;
 }
