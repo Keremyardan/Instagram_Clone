@@ -2,9 +2,7 @@ package com.instagram.backend.mapper;
 
 import com.instagram.backend.model.DetailedPost;
 import com.instagram.backend.model.Post;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
@@ -46,4 +44,29 @@ public interface PostMapper {
     @Select("SELECT p.user_id, p.post.id, post_likes, avatar as user_avatar, user_name, post_location, image_url, post_date, post_likes \n" +
     "FROM saves s, posts p ,users u \n" + "WHERE s.user_id = #{userId} \n" + "AND s.post_id = p.post_id \n" + "AND p.user_id = u.user_id \n" + "ORDER BY post_id \n" + "LIMIT #{startIndex}, #{limit}")
     List<DetailedPost> getFavoritePostsPaging(Integer userId, Integer startIndex, Integer limit);
+
+    @Select("SELECT b.* FROM (" +
+            "SELECT * FROM saves WHERE saves.user_id = #{userId}" +
+            ") a, posts b" +
+            "WHERE" +
+            "a.post_id = b.post_id")
+    List<Post> getSavedPostsByUserId(Integer userId);
+
+    @Delete("DELETE FROM posts WHERE post_id = #{postId}")
+    Integer deletePost(Integer postId);
+
+    @Update("UPDATE posts SET post_caption = #{postCaption} , post_location = #{postLocation}, post_alt = #{postAlt}, WHERE post_id = #{postId}" )
+    int updatePost (Integer postId, String postCaption, String postLocation, String postAlt);
+
+    @Update("UPDATE posts SET post_comments= post_comments + 1 WHERE post_id = #{postId}")
+    int increaseComments(Integer postId);
+
+    @Update("UPDATE posts SET post_comments= post_comments - 1 WHERE post_id = #{postId}")
+    int decreaseComments(Integer postId);
+
+    @Update("UPDATE posts SET post_likes = post_likes + 1 WHERE post_id = ${postId}")
+    int increaseLikes(Integer postId);
+
+    @Update("UPDATE posts SET post_likes = post_likes - 1 WHERE post_id = ${postId}")
+    int decreaseLikes(Integer postId);
 }
