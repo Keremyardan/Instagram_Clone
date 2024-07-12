@@ -27,6 +27,12 @@ public class AccountController {
     @Autowired
     public Image image;
 
+    @GetMapping("accounts/validate/username/{username}")
+    public boolean checkUserName (@PathVariable("username") String username){
+        List<String> allUserName = userMapper.getAllUserNames();
+        return !allUserName.contains(username);
+    }
+
     @GetMapping("accounts/validate/email/{email}")
     public boolean checkEmail(@PathVariable("email") String email) {
         List<String> allEmails = userMapper.getAllEmails();
