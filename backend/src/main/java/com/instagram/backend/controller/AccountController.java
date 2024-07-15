@@ -29,6 +29,7 @@ public class AccountController {
     @Autowired
     public Image image;
 
+    // generally for get methods, Pathvariable is being used
     @GetMapping("accounts/validate/username/{username}")
     public boolean checkUserName (@PathVariable("username") String username){
         List<String> allUserName = userMapper.getAllUserNames();
@@ -51,5 +52,14 @@ public class AccountController {
         String token = JWTUtil.sign(user.getUserName(), user.getUserId());
         userMapper.insertUser(user.getUserName(), user.getEmail(), user.getPassword(),user.getFullName(), user.getAvatar());
         return token;
+    }
+
+    // generally for post and put methods, RequestBody is being used
+    @PostMapping("accounts/avatar")
+    public Integer avatar(@RequestBody String content) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        image = objectMapper.readValue(content, Image.class);
+        Integer res = userMapper.updateAvatar(image.getUserName(), image.getImageUrl());
+        return res;
     }
 }
