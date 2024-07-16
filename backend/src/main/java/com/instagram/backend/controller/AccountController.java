@@ -62,4 +62,12 @@ public class AccountController {
         Integer res = userMapper.updateAvatar(image.getUserName(), image.getImageUrl());
         return res;
     }
+
+    @PostMapping("accounts/update")
+    public Integer userUpdate(@RequestBody String content) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        user = objectMapper.readValue(content, User.class);
+        Integer res = userMapper.updateInSettings(user.getUserName(), user.getAvatar(), user.getFullName(), user.getWebSite(), user.getBio(),user.getPhoneNumber());
+        return res;
+    }
 }
