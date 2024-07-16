@@ -69,5 +69,6 @@ public class AccountController {
         user = objectMapper.readValue(content, User.class);
         Integer res = userMapper.updateInSettings(user.getUserName(), user.getAvatar(), user.getFullName(), user.getWebSite(), user.getBio(),user.getPhoneNumber());
         return res;
+
     }
 }
