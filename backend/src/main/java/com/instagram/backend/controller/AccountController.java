@@ -69,6 +69,46 @@ public class AccountController {
         user = objectMapper.readValue(content, User.class);
         Integer res = userMapper.updateInSettings(user.getUserName(), user.getAvatar(), user.getFullName(), user.getWebSite(), user.getBio(),user.getPhoneNumber());
         return res;
+    }
 
+    @PostMapping("accounts/login")
+    public String login(@RequestBody String content) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        user = objectMapper.readValue(content, User.class);
+        String emailOrPassword = user.getEmail();
+        String lastLoginTime = user.getLastLogin();
+        List<User> allUsers = userMapper.getAllUsers();
+        List<String> allUserNames = userMapper.getAllUserNames();
+        List<String> allEmails = userMapper.getAllEmails();
+        String encodedPassword = "";
+        String userName = "";
+        Integer id = -1;
+        logger.info(emailOrPassword);
+        if(allUserNames.contains(emailOrPassword)) {
+            for (User user : allUsers) {
+                if(user.getUserName().equals(emailOrPassword)) {
+                    encodedPassword = user.getPassword();
+                    userName = user.getUserName();
+                    id = user.getUserId();
+                    break;
+                }
+            }
+        } else if(allEmails.contains(emailOrPassword)) {
+            for (User user : allUsers) {
+                if(user.getEmail().equals(emailOrPassword)) {
+                    encodedPassword = user.getPassword();
+                    userName = user.getUserName();
+                    id = user.getUserId();
+                    break;
+                }
+            }
+        } else return "NO_SUCH_ACCOUNT";
+        logger.info(encodedPassword);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        boolean result = passwordEncoder.matches(user.getPassword(), encodedPassword);
+        if(!result) return "WRONG PASSWORD";
+        userMapper.updateLoginTime(lastLoginTime,userName);
+        String token = JWTUtil.sign(userName, id);
+        return token;
     }
 }
