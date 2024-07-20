@@ -18,6 +18,8 @@ public class Comment {
 
     private String commentContent;
 
+    private String commentTimestamp;
+
     private String commenterName;
 
     private String commenterAvatar;

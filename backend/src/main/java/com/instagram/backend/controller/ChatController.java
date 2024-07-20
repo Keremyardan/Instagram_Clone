@@ -4,12 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.instagram.backend.mapper.ChatMapper;
 import com.instagram.backend.model.Chat;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin
