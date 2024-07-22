@@ -2,9 +2,7 @@ package com.instagram.backend.controller;
 
 import com.instagram.backend.mapper.FollowMapper;
 import com.instagram.backend.mapper.UserMapper;
-import com.instagram.backend.model.Follow;
-import com.instagram.backend.model.Like;
-import com.instagram.backend.model.User;
+import com.instagram.backend.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,5 +44,15 @@ public class FollowController {
         return followMapper.getAllRecentFollows(userId, limit);
     }
 
+    @GetMapping("/follows/mutual/{userId}")
+    public Object getMutualFollowsByUserId(@PathVariable("userId") Integer userId) {
+        List<User> queryusers = userMapper.getQueryObjects(userId);
+        List<Follow> allFollowees = followMapper.getAllFollowees(userId);
+        List<Integer> friends = new ArrayList<>();
+        for (Follow f : allFollowees) {
+            friends.add(f.getFollowedId());
+        }
+        List<MutualResult> res = new ArrayList<>();
 
+    }
 }
