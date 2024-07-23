@@ -46,13 +46,15 @@ public class FollowController {
 
     @GetMapping("/follows/mutual/{userId}")
     public Object getMutualFollowsByUserId(@PathVariable("userId") Integer userId) {
-        List<User> queryusers = userMapper.getQueryObjects(userId);
+        List<User> queryUsers = userMapper.getQueryObjects(userId);
         List<Follow> allFollowees = followMapper.getAllFollowees(userId);
         List<Integer> friends = new ArrayList<>();
         for (Follow f : allFollowees) {
             friends.add(f.getFollowedId());
         }
         List<MutualResult> res = new ArrayList<>();
-
+        for (int i = 0; i < queryUsers.size(); i++) {
+        List<MutualFriend> temp = userMapper.getMutualFriends(userId, queryUsers.get(i).getUserId());
+    }
     }
 }
