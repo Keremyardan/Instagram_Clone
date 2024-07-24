@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@Component
+@CrossOrigin
 public class FollowController {
 
     protected static final Logger logger = LoggerFactory.getLogger(AccountController.class);
