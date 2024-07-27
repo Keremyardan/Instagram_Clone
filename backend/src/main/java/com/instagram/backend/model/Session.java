@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class Session {
     private String sessionId;
     private Integer userAId;
-    private String userName;
-    private String userAvatar;
+    private String userAName;
+    private String userAAvatar;
     private Integer userBId;
     private String userBName;
     private String userBAvatar;
