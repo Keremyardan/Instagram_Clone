@@ -21,7 +21,7 @@ public class AccountController {
     protected static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper usermapper;
 
     @Autowired
     public User user;
@@ -32,13 +32,13 @@ public class AccountController {
     // generally for get methods, Pathvariable is being used
     @GetMapping("accounts/validate/username/{username}")
     public boolean checkUserName (@PathVariable("username") String username){
-        List<String> allUserName = userMapper.getAllUserNames();
+        List<String> allUserName = usermapper.getAllUserNames();
         return !allUserName.contains(username);
     }
 
     @GetMapping("accounts/validate/email/{email}")
     public boolean checkEmail(@PathVariable("email") String email) {
-        List<String> allEmails = userMapper.getAllEmails();
+        List<String> allEmails = usermapper.getAllEmails();
         return !allEmails.contains(email);
     }
 
@@ -50,7 +50,7 @@ public class AccountController {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         String token = JWTUtil.sign(user.getUserName(), user.getUserId());
-        userMapper.insertUser(user.getUserName(), user.getEmail(), user.getPassword(),user.getFullName(), user.getAvatar());
+        usermapper.insertUser(user.getUserName(), user.getEmail(), user.getPassword(),user.getFullName(), user.getAvatar());
         return token;
     }
 
@@ -59,7 +59,7 @@ public class AccountController {
     public Integer avatar(@RequestBody String content) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         image = objectMapper.readValue(content, Image.class);
-        Integer res = userMapper.updateAvatar(image.getUserName(), image.getImageUrl());
+        Integer res = usermapper.updateAvatar(image.getUserName(), image.getImageUrl());
         return res;
     }
 
@@ -67,7 +67,7 @@ public class AccountController {
     public Integer userUpdate(@RequestBody String content) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         user = objectMapper.readValue(content, User.class);
-        Integer res = userMapper.updateInSettings(user.getUserName(), user.getAvatar(), user.getFullName(), user.getWebSite(), user.getBio(),user.getPhoneNumber());
+        Integer res = usermapper.updateInSettings(user.getUserName(), user.getAvatar(), user.getFullName(), user.getWebSite(), user.getBio(),user.getPhoneNumber());
         return res;
     }
 
@@ -77,9 +77,9 @@ public class AccountController {
         user = objectMapper.readValue(content, User.class);
         String emailOrPassword = user.getEmail();
         String lastLoginTime = user.getLastLogin();
-        List<User> allUsers = userMapper.getAllUsers();
-        List<String> allUserNames = userMapper.getAllUserNames();
-        List<String> allEmails = userMapper.getAllEmails();
+        List<User> allUsers = usermapper.getAllUsers();
+        List<String> allUserNames = usermapper.getAllUserNames();
+        List<String> allEmails = usermapper.getAllEmails();
         String encodedPassword = "";
         String userName = "";
         Integer id = -1;
@@ -107,7 +107,7 @@ public class AccountController {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         boolean result = passwordEncoder.matches(user.getPassword(), encodedPassword);
         if(!result) return "WRONG PASSWORD";
-        userMapper.updateLoginTime(lastLoginTime,userName);
+        usermapper.updateLoginTime(lastLoginTime,userName);
         String token = JWTUtil.sign(userName, id);
         return token;
     }
