@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class UserController {
@@ -25,6 +27,12 @@ public class UserController {
     @GetMapping("/users/username/{username}")
     public Object getUserByName(@PathVariable("username") String username) {
         return userMapper.getUserByName(username);
+    }
+
+    @GetMapping("/users/users/{userId}")
+    public Object getAllUsers(@PathVariable("userId") Integer UserId){
+        List<User> allUsers = userMapper.getAllUsers();
+        return allUsers;
     }
 
     @GetMapping("/users/userid/{userId}")
