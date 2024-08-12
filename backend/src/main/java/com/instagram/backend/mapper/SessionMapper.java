@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface SessionMapper {
     @Insert("INSERT INTO sessions (session_id, userA_id, userA_name, userA_avatar, userB_id, userB_avatar, session_timestamp)" +

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ClientInfoStatus;
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface UserMapper {
 

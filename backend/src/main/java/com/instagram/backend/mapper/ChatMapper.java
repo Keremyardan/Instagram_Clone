@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface ChatMapper {
     @Insert("INSERT INTO chats(session_id, user_id, chat_content, chat_timestamp)" +

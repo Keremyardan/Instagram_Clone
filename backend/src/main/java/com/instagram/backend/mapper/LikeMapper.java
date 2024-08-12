@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface LikeMapper {
     @Insert("INSERT INTO likes(user_id, user_name, user_avatar, post_id, like_timestamp) values(#{userId}, #{userName}, #{userAvatar}, #{postId}, #{likeTimestamp}")

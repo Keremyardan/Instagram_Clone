@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface PostMapper {
     @Insert("INSERT INTO posts(post_identifier, image_url, user_id, post_date, post_location," +

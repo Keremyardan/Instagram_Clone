@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface FollowMapper {
     @Insert("INSERT INTO follows(follower_id, followee_id, follow_timestamp values (#{followeeId}, {followTimestamo})")
-    int inserfFollow(Integer followerId, Integer followeeId, String followTimestamp);
+    int insertFollow(Integer followerId, Integer followeeId, String followTimestamp);
 
     @Delete("DELETE FROM follows WHERE folloer_id = #{followerId} and followee_id = #{followeeId}")
     int deleteFollow(Integer followerId, Integer followeeId);

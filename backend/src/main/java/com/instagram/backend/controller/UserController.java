@@ -29,7 +29,7 @@ public class UserController {
         return userMapper.getUserByName(username);
     }
 
-    @GetMapping("/users/users/{userId}")
+    @GetMapping("/users/all/{userId}")
     public Object getAllUsers(@PathVariable("userId") Integer UserId){
         List<User> allUsers = userMapper.getAllUsers();
         return allUsers;
@@ -37,7 +37,10 @@ public class UserController {
 
     @GetMapping("/users/userid/{userId}")
     public Object getUserById(@PathVariable("userId") Integer userId) {
+        logger.info("Fetching user with ID: " + userId);
+
         return userMapper.getUserById(userId);
+
     }
 
     @GetMapping("/users/query/{query}")

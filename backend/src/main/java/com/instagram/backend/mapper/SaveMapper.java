@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface SaveMapper {
     @Insert("INSERT INTO saves(user_id, post_id, save_timestamp) values(#{userId},#{postId}, #{saveTimestamp})")

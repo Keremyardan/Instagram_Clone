@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+
 @Component
 public interface TagMapper {
     @Insert("INSERT INTO tags(user_id, post_id, tag_timestamp) values(#{userId}, #{postId}, #{tagTimestamp})")

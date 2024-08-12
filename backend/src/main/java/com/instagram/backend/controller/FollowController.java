@@ -70,7 +70,7 @@ public class FollowController {
     public Integer follow(@RequestBody String content) throws JsonProcessingException{
         ObjectMapper objectMapper = new ObjectMapper();
         follow = objectMapper.readValue(content, Follow.class);
-        followMapper.inserfFollow(follow.getFollowerId(), follow.getFollowedId(), follow.getFollowTimestamp());
+        followMapper.insertFollow(follow.getFollowerId(), follow.getFollowedId(), follow.getFollowTimestamp());
         return 1;
     }
 
