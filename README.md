@@ -4,9 +4,12 @@ This project simulates Instagram backend service which has been created with Jav
 
 2- Create the database
 
-
+<div>
+<pre id="code-block">
 CREATE DATABASE `instagramDB`;
 USE `instagramDB`;
+  </pre>
+</div>
 
 
 3- Use .sql file provided in backend/sql to generate tables
