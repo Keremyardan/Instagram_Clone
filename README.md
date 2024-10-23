@@ -4,12 +4,19 @@ This project simulates Instagram backend service which has been created with Jav
 
 2- Create the database
 
+<div>
 CREATE DATABASE `instagramDB`;
 USE `instagramDB`;
+</div>
+
+3- Use .sql file provided in backend/sql to generate tables
+
+4- Configure backend dependencies using pom.xml
+
+5- Configure /backend/src/main/resources/application.properties change the values if your configs are different
 
 <div>
-  <button onclick="copyCode()">Copy Code</button>
-  <pre id="code-block">
+
 # DB Username
 spring.datasource.username=root
 # DB Password
@@ -24,16 +31,5 @@ mybatis.mapperLocations=classpath:mapper/*.xml
 mybatis.configuration.map-underscore-to-camel-case=true
   </pre>
 </div>
-
-<script>
-  function copyCode() {
-    var codeBlock = document.getElementById("code-block").innerText;
-    navigator.clipboard.writeText(codeBlock).then(function() {
-      alert("Code copied to clipboard!");
-    }, function() {
-      alert("Failed to copy code.");
-    });
-  }
-</script>
 
 6- Run backendApplication.java
