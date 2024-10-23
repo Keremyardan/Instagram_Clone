@@ -4,10 +4,10 @@ This project simulates Instagram backend service which has been created with Jav
 
 2- Create the database
 
-<div>
+
 CREATE DATABASE `instagramDB`;
 USE `instagramDB`;
-</div>
+
 
 3- Use .sql file provided in backend/sql to generate tables
 
@@ -17,6 +17,7 @@ USE `instagramDB`;
 
 <div>
 
+  <pre id="code-block">
 # DB Username
 spring.datasource.username=root
 # DB Password
