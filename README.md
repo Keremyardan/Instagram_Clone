@@ -42,4 +42,4 @@ logging.level.org.mybatis=DEBUG
   </pre>
 </div>
 
-6- Run backendApplication.java
+6- Run BackendApplication.java
