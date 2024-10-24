@@ -21,18 +21,24 @@ USE `instagramDB`;
 <div>
 
   <pre id="code-block">
-# DB Username
-spring.datasource.username=root
-# DB Password
-spring.datasource.password=123456
-# JDBC Driver
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-# JDBC URL
-spring.datasource.url=jdbc:mysql://localhost:3306/instagramDB?serverTimezone=UTC
+    
+spring.application.name=backend
 
-mybatis.typeAliasesPackage=ca.uottawa.ins.model
+spring.datasource.url=jdbc:postgresql://localhost:5432/instagramDB
+spring.datasource.username=postgres
+spring.datasource.password=Postgre
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.show-sql=true
+
+
+
+mybatis.typeAliasesPackage= com.instagram.backend.model
 mybatis.mapperLocations=classpath:mapper/*.xml
 mybatis.configuration.map-underscore-to-camel-case=true
+
+logging.level.com.instagram.backend=DEBUG
+logging.level.org.mybatis=DEBUG
+
   </pre>
 </div>
 
